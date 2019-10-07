@@ -65,36 +65,30 @@ function Q6(message)
     return newMessage;
 }
 
-function Q7(myArray)
+function Q7(Arr)
 {
-    //code taken from https://www.tutorialspoint.com/How-to-sort-a-String-array-in-Java
-    
+    let myArray = Arr;
     let size = myArray.length;
+    let countArray = ([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);
 
-    for(let i = 0; i<size-1; i++) {
-       for (let j = i+1; j<myArray.length; j++) {
-          if(myArray[i] > (myArray[j])) {
-             let temp = myArray[i];
-             myArray[i] = myArray[j];
-             myArray[j] = temp;
-          }
-       }
-    }
-
-    //code referenced by https://www.w3resource.com/javascript-exercises/javascript-array-exercise-8.php
-    let count = 0;
-    let max = 1;
-    let highBoi;
-    for(let i = 0; i<myArray.length;i++){
-        let count = 0;
-        for(var j=i; j<myArray.length;j++){
-              if (myArray[i] == myArray[j]){
-                  count++;
-              }
-              if (count > max){
-                highBoi = myArray[i];
-              }
+    for (let i in myArray) {
+        for (let j = 0; j < size;j++){
+            if (myArray[i] == myArray[j]){
+                countArray[i]++;
+            }
         }
     }
-    return highBoi;
+
+    let max = 0;
+    let index = 0;
+    for (let i in countArray) {
+        if(countArray[i]>max){
+            max = countArray[i];
+            index = i;
+        }
+    }
+    
+    return myArray[index]
+
+    
 }
