@@ -17,4 +17,11 @@ const mountains = [
 
 function calculate() {
     // This function will fire when the button in the HTML is clicked.
+
+}
+function populate() {
+    let tableData = document.getElementById('mountain-data');
+    for (item of mountains) {
+        tableData.append(item);
+    }
 }
