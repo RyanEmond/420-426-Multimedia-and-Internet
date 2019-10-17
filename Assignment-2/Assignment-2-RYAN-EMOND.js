@@ -50,3 +50,7 @@ function safePawns(pawns = []){
     }
     return safeCount;
 }
+
+function rectanglesUnion(){
+
+}
