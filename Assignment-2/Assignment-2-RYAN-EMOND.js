@@ -32,17 +32,19 @@ function xoReferee([row1,row2,row3]){
 }
 
 function safePawns(pawns = []){
-    
+    let xx;
+    let yy;
     let size = pawns.length;
     let safeCount = 0;
     for(let i = 0; i < size; i++){
-        let x = pawns[i].charAt(0);
+        let x = pawns[i].charCodeAt(0);
         let y = pawns[i].charAt(1);
         for(let j = 0; j < size; j++){
-            let xx = pawns[j].charAt(0);
-            let yy = pawns[j].charAt(1);
+            xx = pawns[j].charCodeAt(0);
+            yy = pawns[j].charAt(1);
             if(yy==y-1 && (xx==x-1 || xx==x+1)){
                 safeCount = safeCount + 1;
+                break;
             }
         }
     }
