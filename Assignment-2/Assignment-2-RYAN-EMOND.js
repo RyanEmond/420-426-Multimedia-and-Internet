@@ -56,20 +56,76 @@ function rectanglesUnion(recs = []){
     for (let i = 0; i < recs.length; i++){
         areas[i] = ((recs[i][2]-recs[i][0])*(recs[i][3]-recs[i][1]))
     }
+    let intersect = [];
     console.log(areas);
-    for(let i = 0; i < recs.length; i++){
-        for(let j = 0; j < recs.length; j++){
-            if(j!=i){
-                if (((recs[i][0] > recs[j][0] && recs[i][0] < recs[j][2]) || (recs[i][2] > recs[j][0] && recs[i][2] < recs[j][2])) && ((recs[i][1] > recs[j][1] && recs[i][1] < recs[j][3]) || (recs[i][3] > recs[j][1] && recs[i][1] < recs[j][1]))){
-                  console.log("Calisse there's an osti d'un overlap quelque part!");
+    for(let a = 0; a < recs.length; a++){
+        for(let b = a+1; b < recs.length; b++){
+            if(a!=b){
+                if(recs[a][2]>=recs[b][0]){
+                    //console.log("right A > left B");
+                    if(recs[a][0]<=recs[b][2]){
+                        //console.log("left A < right B ");
+                        if(recs[a][1]<=recs[b][3]){
+                            //console.log("top A < bottom B");
+                            if(recs[a][3]>=recs[b][1]){
+                                //console.log("bottom A > top B");
+                                //console.log("oh yeah its all coming together");
+                                if(recs[a][0]<recs[b][0]){
+                                    intersect[0] = recs[b][0];
+                                }
+                                else{
+                                    intersect[0] = recs[a][0];
+                                }
+                                if(recs[a][1]<recs[b][1]){
+                                    intersect[1] = recs[b][1];
+                                }
+                                else{
+                                    intersect[1] = recs[a][1];
+                                }
+                                if(recs[a][2]>recs[b][2]){
+                                    intersect[2] = recs[b][2];
+                                }
+                                else{
+                                    intersect[2] = recs[a][2];
+                                }
+                                if(recs[a][3]>recs[b][3]){
+                                    intersect[3] = recs[b][3];
+                                }
+                                else{
+                                    intersect[3] = recs[a][3];
+                                }
+                                console.log(intersect);
+                            }
+                        }
+                    }
                 }
+
+                // 0 - left
+                // 1 - top
+                // 2 - right
+                // 3 - bottom
+                
             }
         }
     }
-
-
 }
 
+
+/*
+
+                //      left A       left B        left A       right B        right A       left B       right A      right B
+                if(((recs[a][0] > recs[b][0] && recs[a][0] < recs[b][2]) || (recs[a][2] > recs[b][0] && recs[a][2] < recs[b][2]))){
+                    console.log(a,b)
+                    console.log("oh");
+                    
+                }
+                //       top A        top B       top A          btm B           btm A        top B         btm A        btm B
+                if(((recs[a][1] > recs[b][1] && recs[a][1] < recs[b][3]) || (recs[a][3] > recs[b][1] && recs[a][3] < recs[b][3]))){
+                    console.log(a,b)
+                    console.log("wow");
+                }
+
+*/
 
 
 
