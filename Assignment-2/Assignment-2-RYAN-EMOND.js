@@ -51,6 +51,64 @@ function safePawns(pawns = []){
     return safeCount;
 }
 
-function rectanglesUnion(){
+function rectanglesUnion(recs = []){
+    let areas = [];
+    for (let i = 0; i < recs.length; i++){
+        areas[i] = ((recs[i][2]-recs[i][0])*(recs[i][3]-recs[i][1]))
+    }
+    console.log(areas);
+    for(let i = 0; i < recs.length; i++){
+        for(let j = 0; j < recs.length; j++){
+            if(j!=i){
+                if (((recs[i][0] > recs[j][0] && recs[i][0] < recs[j][2]) || (recs[i][2] > recs[j][0] && recs[i][2] < recs[j][2])) && ((recs[i][1] > recs[j][1] && recs[i][1] < recs[j][3]) || (recs[i][3] > recs[j][1] && recs[i][1] < recs[j][1]))){
+                  console.log("Calisse there's an osti d'un overlap quelque part!");
+                }
+            }
+        }
+    }
 
+
+}
+
+
+
+
+
+function fastTrain([distance]){
+    let arrUp = [];
+    let arrDown = [];
+    let theSum = 0;
+    let speed = 1;
+    let i=0;
+    while(theSum < distance){
+        arrUp[i] = speed;
+        arrDown[i] = speed;
+        theSum = theSum + speed*2;
+        i++;
+        speed++;
+    }
+    console.log(theSum);
+    console.log(arrUp,arrDown);
+    i--;
+    speed--;
+    if(theSum - distance > arrUp[i]){
+        speed--;
+        arrUp[i] = speed;
+        arrDown[i] = speed;
+    }
+
+
+    console.log("xxx");
+    console.log(arrUp,arrDown);
+    
+}
+function getSum([a1],[a2]){
+    let theSum = 0;
+    for (let i = 0; i < a1.length; i++){
+        theSum += a1[i];
+    }
+    for (let i = 0; i < a2.length; i++){
+        theSum += a2[i];
+    }
+    return theSum;
 }
