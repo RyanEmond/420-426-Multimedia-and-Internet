@@ -53,23 +53,23 @@ function safePawns(pawns = []){
 
 function rectanglesUnion(recs = []){
     let areas = [];
+    let removeArea = 0;
+    let totalArea = 0;
     for (let i = 0; i < recs.length; i++){
         areas[i] = ((recs[i][2]-recs[i][0])*(recs[i][3]-recs[i][1]))
     }
     let intersect = [];
-    console.log(areas);
     for(let a = 0; a < recs.length; a++){
         for(let b = a+1; b < recs.length; b++){
             if(a!=b){
+                // 0 - left
+                // 1 - top
+                // 2 - right
+                // 3 - bottom
                 if(recs[a][2]>=recs[b][0]){
-                    //console.log("right A > left B");
                     if(recs[a][0]<=recs[b][2]){
-                        //console.log("left A < right B ");
                         if(recs[a][1]<=recs[b][3]){
-                            //console.log("top A < bottom B");
                             if(recs[a][3]>=recs[b][1]){
-                                //console.log("bottom A > top B");
-                                //console.log("oh yeah its all coming together");
                                 if(recs[a][0]<recs[b][0]){
                                     intersect[0] = recs[b][0];
                                 }
@@ -94,42 +94,47 @@ function rectanglesUnion(recs = []){
                                 else{
                                     intersect[3] = recs[a][3];
                                 }
-                                console.log(intersect);
+                                removeArea += (intersect[2]-intersect[0])*(intersect[3]-intersect[1]);
                             }
                         }
                     }
                 }
-
-                // 0 - left
-                // 1 - top
-                // 2 - right
-                // 3 - bottom
-                
             }
         }
     }
+    for(let i = 0; i < areas.length; i++){
+        totalArea += areas[i];
+    }
+    totalArea -= removeArea;
+    return totalArea;
+}
+
+function fastTrain([distance, limit]){
+    let dLeft = distance;
+    let i = 1;
+    let count = 0;
+    while (true){
+        dLeft -= (i*2);
+        if(dLeft < 0){
+            dLeft += (i*2);
+            count++;
+            break;
+        }
+        if(dLeft == 0){
+            break;
+        }
+        i++;
+        count+=2;
+        if(i > limit){
+            i--;
+        }
+    }
+    return count;
 }
 
 
-/*
 
-                //      left A       left B        left A       right B        right A       left B       right A      right B
-                if(((recs[a][0] > recs[b][0] && recs[a][0] < recs[b][2]) || (recs[a][2] > recs[b][0] && recs[a][2] < recs[b][2]))){
-                    console.log(a,b)
-                    console.log("oh");
-                    
-                }
-                //       top A        top B       top A          btm B           btm A        top B         btm A        btm B
-                if(((recs[a][1] > recs[b][1] && recs[a][1] < recs[b][3]) || (recs[a][3] > recs[b][1] && recs[a][3] < recs[b][3]))){
-                    console.log(a,b)
-                    console.log("wow");
-                }
-
-*/
-
-
-
-
+/*                               This was attempted fastTrain... did not go well
 function fastTrain([distance]){
     let arrUp = [];
     let arrDown = [];
@@ -168,3 +173,4 @@ function getSum([a1],[a2]){
     }
     return theSum;
 }
+*/
