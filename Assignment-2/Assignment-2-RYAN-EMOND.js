@@ -109,24 +109,29 @@ function rectanglesUnion(recs = []){
     return totalArea;
 }
 
-function fastTrain([distance, limit]){
-    let dLeft = distance;
-    let i = 1;
+function fastTrain(arr=[]){
+    //[distance, limit]
     let count = 0;
-    while (true){
-        dLeft -= (i*2);
-        if(dLeft < 0){
-            dLeft += (i*2);
-            count++;
-            break;
-        }
-        if(dLeft == 0){
-            break;
-        }
-        i++;
-        count+=2;
-        if(i > limit){
-            i--;
+    for (let j = 0; j < arr.length; j++){
+        let distance = arr[j][0];
+        let limit = arr[j][1];
+        let dLeft = distance;
+        let i = 1;
+        while (true){
+            dLeft -= (i*2);
+            if(dLeft < 0){
+                dLeft += (i*2);
+                count++;
+                break;
+            }
+            if(dLeft == 0){
+                break;
+            }
+            i++;
+            count+=2;
+            if(i > limit){
+                i--;
+            }
         }
     }
     return count;
