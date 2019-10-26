@@ -110,7 +110,6 @@ function rectanglesUnion(recs = []){
 }
 
 function fastTrain(arr=[]){
-    //[distance, limit]
     let count = 0;
     for (let j = 0; j < arr.length; j++){
         let distance = arr[j][0];
@@ -120,62 +119,25 @@ function fastTrain(arr=[]){
         while (true){
             dLeft -= (i*2);
             if(dLeft < 0){
-                dLeft += (i*2);
-                count++;
-                break;
+                if(dLeft <= -i){
+                    count++;
+                    break;
+                }
+                else{
+                    count+=2;
+                    break;
+                }
             }
-            if(dLeft == 0){
+            else if(dLeft == 0){
+                count+=2;
                 break;
             }
             i++;
-            count+=2;
             if(i > limit){
                 i--;
             }
+            count+=2;
         }
     }
     return count;
 }
-
-
-
-/*                               This was attempted fastTrain... did not go well
-function fastTrain([distance]){
-    let arrUp = [];
-    let arrDown = [];
-    let theSum = 0;
-    let speed = 1;
-    let i=0;
-    while(theSum < distance){
-        arrUp[i] = speed;
-        arrDown[i] = speed;
-        theSum = theSum + speed*2;
-        i++;
-        speed++;
-    }
-    console.log(theSum);
-    console.log(arrUp,arrDown);
-    i--;
-    speed--;
-    if(theSum - distance > arrUp[i]){
-        speed--;
-        arrUp[i] = speed;
-        arrDown[i] = speed;
-    }
-
-
-    console.log("xxx");
-    console.log(arrUp,arrDown);
-    
-}
-function getSum([a1],[a2]){
-    let theSum = 0;
-    for (let i = 0; i < a1.length; i++){
-        theSum += a1[i];
-    }
-    for (let i = 0; i < a2.length; i++){
-        theSum += a2[i];
-    }
-    return theSum;
-}
-*/
