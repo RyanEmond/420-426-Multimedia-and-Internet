@@ -141,3 +141,10 @@ function fastTrain(arr=[]){
     }
     return count;
 }
+
+module.exports = {
+    xoReferee: xoReferee,
+    safePawns: safePawns,
+    rectanglesUnion: rectanglesUnion,
+    fastTrain: fastTrain
+    };
