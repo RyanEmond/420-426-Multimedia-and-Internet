@@ -13,5 +13,5 @@ for(i of shapes){
     else if(i.type == "triangle"){
         area = (i.size[0] * i.size[1] / 2);
     }
-    console.log("The area of the triangle is " + area);
+    console.log("The area of the "+ i.type +" is " + area);
 }
