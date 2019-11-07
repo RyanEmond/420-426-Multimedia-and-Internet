@@ -1,3 +1,128 @@
 body{
-    background-color: aqua;
+	display:flex;
+	flex-direction:column;
+	align-content:center;
+}
+h1{
+	text-align:center;
+}
+nav{
+	background-color:lightgray;
+	display:flex;
+	flex-direction:column;
+	text-align:center;
+	justify-content:flex-start;
+	border-radius:15px;
+	margin-top:20px;
+	padding-bottom:20px;
+}
+img{
+	height:70px;
+	width:70px;
+	margin-bottom:15px;
+}
+#about, #education, #work, #projects{
+	text-align:center;
+	padding:10px;
+	margin-top:20px;
+}
+p{
+	font-size:20px;
+}
+#edu{
+	display:block;
+}
+header{
+	width:100%;
+	height:auto;
+	text-align: center;
+	background-color:rgb(172, 228, 228);
+	border-radius:15px;
+}
+.year{
+	display:inline-block;
+    font-size:20px;
+    font-style:italic;
+	font-weight:bold;
+}
+.subnote{
+	font-size:20px;
+}
+.sidenote{
+	font-size:18px;
+}
+#name{
+	font-size:55px;
+	font-style:italic;
+}
+#about, #education, #work, #projects{
+	background-color:#C1CAD6;
+	border-radius:15px;
+}
+.screenshots{
+	width:100%;
+	height:auto;
+}
+
+
+
+@media (min-width: 500px){
+	body{
+		display:grid;
+		grid-template-columns:150px 1fr ;
+		grid-template-rows: 240px 1fr;
+		grid-template-areas: 
+			"Header Header"
+			"Nav Main";
+		grid-gap: 20px;
+	}
+	header{
+		grid-area: Header;
+	}
+	nav{
+		grid-area: Nav;
+		margin-top:0;
+	}
+	main{
+		min-width:300px;
+		grid-area:Main;
+		display:flex;
+		flex-direction: column;
+	}
+	#about{
+		margin-top:0;
+	}
+	nav{
+		margin-bottom: 20px;
+	}
+	
+}
+@media (min-width: 900px){
+	body{
+		display:grid;
+		grid-template-columns:150px 1fr;
+		grid-template-rows: 240px 2fr;
+		grid-template-areas: 
+			"Header Header"
+			"Nav Main ";
+		grid-gap:20px;
+	}
+	main{
+		min-width:700px;
+		grid-area: Main;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 1fr 2fr;
+		grid-template-areas:
+			"About Education"
+			"Work Projects";
+		grid-gap:20px;
+	}
+	#about, #education, #work, #projects{
+		margin-top:0;
+	}
+	nav{
+		margin-bottom: 20px;
+	}
+
 }
