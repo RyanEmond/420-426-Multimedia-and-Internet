@@ -1,4 +1,5 @@
 const url = "https://api.spacexdata.com/v3/"; // The root of the SpaceX API
+const info = "https://api.spacexdata.com/v3/info"
 const theNext = "https://api.spacexdata.com/v3/launches/next"
 const rockets = "https://api.spacexdata.com/v3/rockets";
 const thePast = "https://api.spacexdata.com/v3/launches/past?limit=3"
@@ -8,7 +9,14 @@ fetch(url)
         doStuff(data)
     })
     .catch(function(error) {
-        // If there is any error you will catch them here.
+        console.log(error);
+});
+fetch(info)
+    .then(response => response.json())
+    .then(data => {
+        fillInfo(data)
+    })
+    .catch(function(error) {
         console.log(error);
 });
 fetch(theNext)
@@ -17,7 +25,6 @@ fetch(theNext)
         doStuff(data)
     })
     .catch(function(error) {
-        // If there is any error you will catch them here.
         console.log(error);
 });
 fetch(rockets)
@@ -26,7 +33,6 @@ fetch(rockets)
         doStuff(data)
     })
     .catch(function(error) {
-        // If there is any error you will catch them here.
         console.log(error);
 });
 fetch(thePast)
@@ -35,10 +41,22 @@ fetch(thePast)
         doStuff(data)
     })
     .catch(function(error) {
-        // If there is any error you will catch them here.
         console.log(error);
 });
+
 function doStuff(data) {
-    // If the request was successful then data will have everything you asked for.
     console.log(data);
+}
+
+function fillInfo(data){
+    document.getElementById("foundedBy").innerText += (" " +data.founder);
+    document.getElementById("est").innerText += (" " +data.founded);
+    document.getElementById("ceo").innerText += (" " +data.ceo);
+    document.getElementById("cto").innerText += (" " +data.cto);
+    if(data.founder == data.ceo && data.cto == data.cto){
+        document.getElementById("extraNote").innerText = "Yes, "+data.founder+" does a lot for this company.";
+    }
+    document.getElementById("emps").innerText += (" " +data.employees);
+    document.getElementById("sites").innerText = ("There is "+data.test_sites+" test site and "+data.launch_sites+" launch sites.");
+
 }
