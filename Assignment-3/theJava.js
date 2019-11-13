@@ -60,3 +60,10 @@ function fillInfo(data){
     document.getElementById("sites").innerText = ("There is "+data.test_sites+" test site and "+data.launch_sites+" launch sites.");
 
 }
+
+function rocketHasBeenChosen(){
+    let rocket = document.getElementsByName("rocketSelector").value;
+    let desc = 
+    document.getElementById("desc").innerText="Description: aaa";
+
+}

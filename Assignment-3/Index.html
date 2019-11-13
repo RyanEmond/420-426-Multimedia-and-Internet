@@ -36,16 +36,21 @@
                     <textarea></textarea>
                 </div>
                 
-                <div id="work">
+                <div id="rockets">
                     <h1>Some rocket that you want to know about</h1>
                     <p>
                         What do you want to know about?
-                        <select name="rocketSelector">
-                               <option value="1">Falcon1</option>
-                               <option value="2">Falcon9</option>
-                               <option value="3">FalconHeavy</option>
-                               <option value="4">Starship</option>
-                           </select>
+                        <select name="rocketSelector" onclick="rocketHasBeenChosen()">
+                            <option value="1">Falcon1</option>
+                            <option value="2">Falcon9</option>
+                            <option value="3">FalconHeavy</option>
+                            <option value="4">Starship</option>
+                        </select>
+                    </p>
+                    <p>
+                        <h3 id="desc">Description: </h3>
+                        <h3 id="cost">Cost Per Launch: </h3>
+                        <h3 id="active">Active?: </h3>
                     </p>
                 </div>
                 <div id="projects">
