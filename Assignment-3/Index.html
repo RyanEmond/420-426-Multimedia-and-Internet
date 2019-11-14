@@ -33,6 +33,7 @@
                     <p id="edu">
                         How many launches would you like to see?
                     </p>
+                    <table id=></table>
                     <textarea></textarea>
                 </div>
                 
@@ -40,17 +41,17 @@
                     <h1>Some rocket that you want to know about</h1>
                     <p>
                         What do you want to know about?
-                        <select name="rocketSelector" onclick="rocketHasBeenChosen()">
-                            <option value="1">Falcon1</option>
-                            <option value="2">Falcon9</option>
-                            <option value="3">FalconHeavy</option>
-                            <option value="4">Starship</option>
+                        <select id="rocketSelector" onclick="rocketHasBeenChosen()">
+                            <option value="0">Falcon1</option>
+                            <option value="1">Falcon9</option>
+                            <option value="2">FalconHeavy</option>
+                            <option value="3">Starship</option>
                         </select>
                     </p>
                     <p>
-                        <h3 id="desc">Description: </h3>
-                        <h3 id="cost">Cost Per Launch: </h3>
-                        <h3 id="active">Active?: </h3>
+                        <h3>Description: <span id="desc">Waiting for selection...</span></h3>
+                        <h3>Cost Per Launch: <span id="cost">Waiting for selection...</span></h3>
+                        <h3>Active? <span id="active">Waiting for selection...</span></h3>
                     </p>
                 </div>
                 <div id="projects">
