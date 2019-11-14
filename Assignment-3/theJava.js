@@ -27,14 +27,7 @@ fetch(theNext)
     .catch(function(error) {
         console.log(error);
 });
-fetch(rockets)
-    .then(response => response.json())
-    .then(data => {
-        doStuff(data)
-    })
-    .catch(function(error) {
-        console.log(error);
-});
+
 fetch(thePast)
     .then(response => response.json())
     .then(data => {
@@ -62,8 +55,28 @@ function fillInfo(data){
 }
 
 function rocketHasBeenChosen(){
-    let rocket = document.getElementsByName("rocketSelector").value;
-    let desc = 
-    document.getElementById("desc").innerText="Description: aaa";
+    fetch(rockets)
+    .then(response => response.json())
+    .then(data => {
+        fillWithRocket(data)
+    })
+    .catch(function(error) {
+        console.log(error);
+});
+    
+
+}
+function fillWithRocket(data){
+    console.log(data);
+    let rockets = document.getElementById("rocketSelector");
+    let selected = rockets.options[rockets.selectedIndex].value;
+    document.getElementById("desc").innerText = "\n"+(data[selected].description);
+    document.getElementById("cost").innerText = "$"+(data[selected].cost_per_launch);
+    if((data[selected].active) == true){
+        document.getElementById("active").innerText = "Indeed it is!"
+    }
+    else{
+        document.getElementById("active").innerText = "Not anymore..."
+    }
 
 }
