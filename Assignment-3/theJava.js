@@ -14,10 +14,10 @@ fetch(info)
     .catch(function(error) {
         console.log(error);
 });
-fetch(info)
+fetch(theNext)
     .then(response => response.json())
     .then(data => {
-        countDownDate = new Date(data.launch_date_local).getTime();
+        countDownDate = new Date(data.launch_date_utc).getTime();
         NextLaunchData(data);
     })
     .catch(function(error) {
