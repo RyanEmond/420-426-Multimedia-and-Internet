@@ -5,62 +5,64 @@
         <meta charset="utf-8"/>
         <html lang="en">
     </head>
-    <script src="theJava.js"></script>
     <body>
-            <header>
-                    <h1 id="name">SpaceX</h1>
-                    <p id="est">est. </p>
-            </header>
-            <nav>
-                <h1 id="GoTo">Go to</h1>
-                <a href="#about">About SapceX</a>
-                <a href="#education">Previous Launches</a>
-                <a href="#work">Upcoming Launches</a>
-                <a href="#projects">Other shit</a>
-            </nav>
-            <main>
-                <div id="about">
-                    <h1>About SpaceX</h1>
-                    <p id="foundedBy">Founded By:</p>
-                    <p id="ceo">CEO:</p>
-                    <p id="cto">CTO:</p>
-                    <p id="extraNote"> </p>
-                    <p id="emps">Number of employees:</p>
-                    <p id="sites"></p>
-                </div>
-                <div id="education">
-                    <h1>What went up, might have come down</h1>
-                    <p id="edu">
-                        How many launches would you like to see?
-                    </p>
-                    <table id=></table>
-                    <textarea></textarea>
-                </div>
-                
-                <div id="rockets">
-                    <h1>Some rocket that you want to know about</h1>
-                    <p>
-                        What do you want to know about?
-                        <select id="rocketSelector" onclick="rocketHasBeenChosen()">
-                            <option value="0">Falcon1</option>
-                            <option value="1">Falcon9</option>
-                            <option value="2">FalconHeavy</option>
-                            <option value="3">Starship</option>
-                        </select>
-                    </p>
-                    <p>
-                        <h3>Description: <span id="desc">Waiting for selection...</span></h3>
-                        <h3>Cost Per Launch: <span id="cost">Waiting for selection...</span></h3>
-                        <h3>Active? <span id="active">Waiting for selection...</span></h3>
-                    </p>
-                </div>
-                <div id="projects">
-                    <h1>extra space</h1>
-                </div>
+        <header>
+                <h1 id="name">SpaceX</h1>
+                <p id="est">est. </p>
+        </header>
+        <nav>
+            <h1 id="GoTo">Go to</h1>
+            <a href="#about">About SapceX</a>
+            <a href="#previous">Previous Launches</a>
+            <a href="#rockets">Rockets</a>
+            <a href="#nextLaunch">The Next Launch</a>
+        </nav>
+        <main>
+            <div id="about">
+                <h1>About SpaceX</h1>
+                <p id="foundedBy">Founded By:</p>
+                <p id="ceo">CEO:</p>
+                <p id="cto">CTO:</p>
+                <p id="extraNote"> </p>
+                <p id="emps">Number of employees:</p>
+                <p id="sites"></p>
             </div>
-            <footer>
-            
-            </footer>
+            <div id="previous">
+                <h1>What went up, might have come down</h1>
+                <p id="prev">
+                    How many launches would you like to see?</br>
+                    <textarea id="numLaunches"></textarea></br>
+                    <button onclick="showPastRockets()">Show Me!</button>
+                </p>
+            </div>
+            <div id="rockets">
+                <h1>A rocket that you want to know about</h1>
+                <p>
+                    What do you want to know about?
+                    <select id="rocketSelector" onclick="rocketHasBeenChosen()">
+                        <option>Select one</option>
+                        <option value="0">Falcon1</option>
+                        <option value="1">Falcon9</option>
+                        <option value="2">FalconHeavy</option>
+                        <option value="3">Starship</option>
+                    </select>
+                </p>
+                <p id="definitions">
+                    <h3>Description: <span id="desc">Waiting for selection...</span></h3>
+                    <h3>Cost Per Launch: <span id="cost">Waiting for selection...</span></h3>
+                    <h3>Active? <span id="active">Waiting for selection...</span></h3>
+                    <h3>Mass: <span id="mass">Waiting for selection...</span></h3>
+                    <img src="./elonmusk.jpg" height="170px" width="300px" id="theImage"></img>
+                </p>
+            </div>
+            <div id="nextLaunch">
+                <h1>The next launch is in...</h1>
+                <p id="countdown"></p>
+                <h1>What's it all about?</h1>
+                <p id="nextName">Rocket name: </p>
+                <p id="nextMission">Mission name: </p>
+                <p id="nextLocation">Location: </p>
+            </div>
         </body>
     <script src="theJava.js"></script>
 </html>
