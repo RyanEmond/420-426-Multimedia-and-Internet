@@ -15,3 +15,56 @@ context.lineTo(100,25);
 context.closePath();
 context.fill();
 */
+
+/*
+context.arc(100,100,20,12,0,true);
+context.fill();
+*/
+
+/*
+let x = 100;
+function animate() {
+    requestAnimationFrame(animate);
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.beginPath();
+    context.arc(x++, 100, 50, 0, 2 * Math.PI);
+    context.closePath();
+    context.stroke();
+} animate();
+*/
+
+class Bubble {
+    constructor(x, y) {
+        /* Initialize the bubble's properties. */
+    }
+    draw() {
+        /* Code concerning the drawing of the bubble should go here. */
+    }
+    update() {
+        /* Code concerning the manipulation of the bubbles properties should go here. */
+        context.beginPath();
+        context.arc(mouseX, mouseY, 20, 0, 2 * Math.PI, true);
+        context.fillStyle = "#000000";
+        context.fill();
+    } 
+}
+let mouseX = Math.random(0, canvas.width);
+let mouseY = Math.random(0, canvas.height);
+canvas.addEventListener("mousemove", setMousePosition, false);
+
+let bubble = new Bubble(mouseX,mouseY);
+animate();
+
+function setMousePosition(e){
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    animate()
+}
+function animate(){
+    requestAnimationFrame(animate);
+    context.clearRect(0,0,canvas.width,canvas.height);
+    bubble.x = mouseX;
+    bubble.y = mouseY;
+    bubble.update();
+}
+
