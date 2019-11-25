@@ -4,6 +4,7 @@ class Car{
     constructor(x,y){
         this.x = x;
         this.y = y;
+        this.speed = 0;
         this.width = 50;
         this.height = 25;
         this.maxSpeed = 5;
@@ -19,14 +20,24 @@ class Car{
         context.restore();
     }
     update(){
-
+        this.x += this.speed;
         this.draw();
     }
     accelerate(){
-
+        if(this.speed < this.maxSpeed){
+            this.speed += 0.01
+        }
+        this.update();
+        console.log(this.speed.toFixed(2));
     }
     decelerate(){
-
+        if(this.speed > -this.maxSpeed){
+            this.speed -= 0.01;
+        }
+        
+        this.update();
+        console.log(this.speed.toFixed(2));
+        
     }
     turnRight(){
 
@@ -37,10 +48,9 @@ class Car{
     displayStatus(){
         context.save();
         context.font = "12px Arial";
-        context.fillText(`Position: (${this.position.x.toFixed(0)},
-        ${this.position.y.toFixed(0)})`, 10, 20);
-        context.fillText(`Rotation: ${this.rotation.toFixed(2)}`, 10, 40);
-        context.fillText(`Speed: ${this.speed.toFixed(2)}`, 10, 60);
+        context.fillText('Position: (${this.x}, ${this.y})', 10, 20);
+        context.fillText('Rotation: ${this.rotation}', 10, 40);
+        context.fillText('Speed: ${this.speed}', 10, 60);
         context.restore();
     }
 }
