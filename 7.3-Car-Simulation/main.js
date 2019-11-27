@@ -1,32 +1,32 @@
 let canvas = document.querySelector('canvas');
 let context = canvas.getContext('2d');
-let car = new Car(250, 250);
+let car = new Car(canvas.width / 2, canvas.height / 2);
+
 animate();
 canvas.focus();
-window.addEventListener("keydown", test);
-car.displayStatus();
+window.addEventListener("keydown", keyDown);
+
 
 function animate(){
     requestAnimationFrame(animate);
     context.clearRect(0,0,canvas.width,canvas.height);
-    //key press
+    car.displayStatus();
     car.update();
 }
 
-function test(e){
+function keyDown(e){
     if(e.keyCode == '37'){          //left
-        console.log("left");
+        car.turnLeft();
     }
     else if(e.keyCode == '38'){     //up
-        //console.log("up");
         car.accelerate();
     }
     else if(e.keyCode == '39'){     //right
-        console.log("right");
+        car.turnRight();
     }
     else if(e.keyCode == '40'){     //down
-        //console.log("down");
-        car.decelerate();
+        car.reverse();
     }
     animate();
 }
+
