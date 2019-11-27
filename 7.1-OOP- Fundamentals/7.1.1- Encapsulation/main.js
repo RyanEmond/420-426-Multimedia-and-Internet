@@ -1,17 +1,39 @@
-let shapes = [
-    {type : "circle", colour : "red", size : 3},
-    {type : "rectangle", colour : "blue", size : [3, 4]}, 
-    {type : "triangle", colour : "green", size : [2, 4]}];
+class Circle{
+    constructor(radius, colour){
+        this.radius = radius;
+        this.colour = colour;
+    }
+}
+class Rectangle{
+    constructor(height, width, colour){
+        this.height = height;
+        this.width = width;
+        this.colour = colour;
+    }
+}
+class Triangle{
+    constructor(height, width, colour){
+        this.height = height;
+        this.width = width;
+        this.colour = colour;
+    }
+}
+
+const circle = new Circle(3, "red");
+const rectangle = new Rectangle(3,4, "blue");
+const triangle = new Triangle(2,4, "green");
+let shapes = [circle, rectangle, triangle];
 for(i of shapes){
     let area;
-    if(i.type == "circle"){
-        area = (3.14*i.size*i.size);
+    if(i instanceof Circle){
+        area = (3.14*i.radius*i.radius);
     }
-    else if(i.type == "rectangle"){
-        area = (i.size[0] * i.size[1]);
+    else if(i instanceof Rectangle){
+        area = (i.height * i.width);
     }
-    else if(i.type == "triangle"){
-        area = (i.size[0] * i.size[1] / 2);
+    else if(i instanceof Triangle){
+        area = (i.height * i.width / 2);
     }
-    console.log("The area of the "+ i.type +" is " + area);
+    console.log("The area of the "+ i +" is " + area);
 }
+
