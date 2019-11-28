@@ -3,21 +3,20 @@ class aBox{
         this.x = x;
         this.y = y;
         this.size = size;
+        this.fourCorners = [(this.x, this.y), (this.x + this.size, this.y), (this.x, this.y + this.size), (this.x + this.size, this.y + this.size)] //top left, top right, bottom left, bottom right
     }
     
 }
 
 class Character extends aBox{
-    constructor(x,y){
-        this.x = x;
-        this.y = y;
+    constructor(x, y, size){
+        super(x, y, size)
         this.speed = 5;
-        this.size = 40;
         this.left = false;
         this.right = false;
         this.up = false;
         this.down = false;
-        this.fourCorners = [(this.x, this.y), (this.x + this.size, this.y), (this.x, this.y + this.size), (this.x + this.size, this.y + this.size)] //top left, top right, bottom left, bottom right
+        
     }
     draw(){
         context.save();
@@ -62,12 +61,10 @@ class Character extends aBox{
     }
 }
 class Collectable extends aBox{
-    constructor(x,y){
-        this.x = x;
-        this.y = y;
+    constructor(x, y, size){
+        super(x,y,size)
         this.colours = ["Green", "Yellow", "Blue"];
         this.colour = this.colours[Math.floor(Math.random() * Math.floor(3))];
-        this.size = 20;
     }
     draw(){
         context.save();

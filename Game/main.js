@@ -1,6 +1,9 @@
+let characterSize = 40;
+let boxSize = 20;
+
 let canvas = document.querySelector('canvas');
 let context = canvas.getContext('2d');
-let character = new Character(canvas.width / 2 - 20, canvas.height / 2 - 20);
+let character = new Character(canvas.width / 2 - 20, canvas.height / 2 - 20, characterSize);
 let count = 0;
 let boxes = new Array();
 let boxesNeeded = new Array();
@@ -73,7 +76,7 @@ function movement(){
     }
 }
 function createBox(){
-    let box = new Collectable(Math.floor(Math.random() * Math.floor(canvas.width - 20)), Math.floor(Math.random() * Math.floor(canvas.height - 20)));
+    let box = new Collectable(Math.floor(Math.random() * Math.floor(canvas.width - boxSize)), Math.floor(Math.random() * Math.floor(canvas.height - boxSize)), boxSize);
     return box;
 }
 function drawBoxes(){
