@@ -1,23 +1,27 @@
-class Character{
-    constructor(x,y){
+class aBox{
+    constructor(x,y,size){
         this.x = x;
         this.y = y;
-        this.speed = 5;
-        this.size = 40;
-        this.left = false;
-        this.right = false;
-        this.up = false;
-        this.down = false;
+        this.size = size;
+        this.boundaries = {"top": this.y, "bottom": this.y + this.size, "left": this.x, "right": this.x + this.size};                                       
     }
     draw(){
         context.save();
         context.translate(this.x, this.y);
-        context.fillStyle = "Black";
+        context.fillStyle = this.colour;
         context.fillRect(0, 0, this.size, this.size);
         context.restore();
     }
-    update(){
-        this.draw();
+}
+class Character extends aBox{
+    constructor(x, y, size){
+        super(x, y, size)
+        this.speed = 5;
+        this.left = false;
+        this.right = false;
+        this.up = false;
+        this.down = false;
+        this.colour = "Black";
     }
     goLeft(){
         this.x -= this.speed;
@@ -51,20 +55,11 @@ class Character{
         context.restore();
     }
 }
-class Collectable{
-    constructor(x,y){
-        this.x = x;
-        this.y = y;
+class Collectable extends aBox{
+    constructor(x, y, size){
+        super(x,y,size)
         this.colours = ["Green", "Yellow", "Blue"];
         this.colour = this.colours[Math.floor(Math.random() * Math.floor(3))];
-        this.size = 20;
-    }
-    draw(){
-        context.save();
-        context.translate(this.x, this.y);
-        context.fillStyle = this.colour;
-        context.fillRect(0, 0, this.size, this.size);
-        context.restore();
     }
 }
 class FallingObject{
