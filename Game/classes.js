@@ -1,4 +1,13 @@
-class Character{
+class aBox{
+    constructor(x,y,size){
+        this.x = x;
+        this.y = y;
+        this.size = size;
+    }
+    
+}
+
+class Character extends aBox{
     constructor(x,y){
         this.x = x;
         this.y = y;
@@ -8,6 +17,7 @@ class Character{
         this.right = false;
         this.up = false;
         this.down = false;
+        this.fourCorners = [(this.x, this.y), (this.x + this.size, this.y), (this.x, this.y + this.size), (this.x + this.size, this.y + this.size)] //top left, top right, bottom left, bottom right
     }
     draw(){
         context.save();
@@ -51,7 +61,7 @@ class Character{
         context.restore();
     }
 }
-class Collectable{
+class Collectable extends aBox{
     constructor(x,y){
         this.x = x;
         this.y = y;
