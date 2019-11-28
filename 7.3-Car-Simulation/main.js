@@ -1,10 +1,11 @@
 let canvas = document.querySelector('canvas');
 let context = canvas.getContext('2d');
 let car = new Car(canvas.width / 2, canvas.height / 2);
+window.addEventListener("keydown", keyDown);
 
 animate();
 canvas.focus();
-window.addEventListener("keydown", keyDown);
+
 
 
 function animate(){
