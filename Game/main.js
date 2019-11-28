@@ -21,17 +21,17 @@ function animate(){
     requestAnimationFrame(animate);
     context.clearRect(0,0,canvas.width,canvas.height);
     character.displayStatus();
-    character.update();
+    character.draw();
     movement();
-    createBox();
+    
+    
     if(count % 200 == 0){
         let box = createBox();
         boxes.push(box);
     }
     count++;
     drawBoxes();
-    //testBoxCollect();
-    console.log("refresh");
+    checkOverlap();
 }
 function keyDown(e){
     if(e.keyCode == '37'){          //left
@@ -82,5 +82,24 @@ function createBox(){
 function drawBoxes(){
     for(let i in boxes){
         boxes[i].draw();
+    }
+    
+}
+function checkOverlap(){
+    
+    for(let i of boxes){
+        
+        if(i.boundaries["left"] >= character.boundaries["left"]){
+            console.log("left");
+            if(i.boundaries["right"] <= character.boundaries["right"]){
+                console.log("right");
+                if(i.boundaries["top"] >= character.boundaries["top"]){
+                    console.log("top");
+                    if(i.boundaries["bottom"] <= character.boundaries["bottom"]){
+                        console.log("bottom");
+                    }
+                }
+            }
+        }
     }
 }
