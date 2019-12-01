@@ -12,6 +12,9 @@ class aBox{
         context.fillRect(0, 0, this.size, this.size);
         context.restore();
     }
+    updateBounds(){
+        this.boundaries = {"top": this.y, "bottom": this.y + this.size, "left": this.x, "right": this.x + this.size}; 
+    }
 }
 class Character extends aBox{
     constructor(x, y, size){
