@@ -29,12 +29,12 @@ class Character extends aBox{
     goLeft(){
         this.x -= this.speed;
         if(this.x < 0){
-            this.x = canvas.width - this.size;
+            this.x = canvas.width - this.size - 100;
         }
     }
     goRight(){
         this.x += this.speed;
-        if(this.x > canvas.width - this.size){
+        if(this.x > canvas.width - this.size - 100){
             this.x = 0;
         }
     }
@@ -65,13 +65,7 @@ class Collectable extends aBox{
         this.colour = this.colours[Math.floor(Math.random() * Math.floor(3))];
     }
 }
-class FallingObject{
-
-}
-class Rock extends FallingObject{
-
-}
-class PowerUp extends FallingObject{
+class PowerUp{
 
 }
 class SizeChange extends PowerUp{

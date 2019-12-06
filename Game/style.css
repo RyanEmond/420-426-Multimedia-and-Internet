@@ -7,8 +7,19 @@ canvas{
     margin-right: auto;
     margin-top: 40px;
     display: block;
+    clear: right;
+}
+#theCanvas{
+    grid-area: Game;
 }
 html{
     background-color: black;
-    
+}
+body{
+    display:grid;
+    grid-template-columns:1fr 2fr 1fr ;
+    grid-template-rows: 1fr;
+    grid-template-areas: 
+        "Instructions Game Ads";
+    grid-gap: 20px;
 }
