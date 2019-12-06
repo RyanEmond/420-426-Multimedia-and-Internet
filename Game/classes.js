@@ -25,6 +25,7 @@ class Character extends aBox{
         this.up = false;
         this.down = false;
         this.colour = "Black";
+        this.points = 0;
     }
     goLeft(){
         this.x -= this.speed;
@@ -52,9 +53,8 @@ class Character extends aBox{
     }
     displayStatus(){
         context.save();
-        context.font = "12px Arial";
-        context.fillText(`Position: (${this.x.toFixed(0)},${this.y.toFixed(0)})`, 10, 20);
-        context.fillText(`Speed: ${this.speed.toFixed(2)}`, 10, 40);
+        context.font = "30px Arial";
+        context.fillText(`Points: ${this.points.toFixed(0)}`, 10, 40);
         context.restore();
     }
 }

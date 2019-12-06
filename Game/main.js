@@ -96,10 +96,13 @@ function checkOverlap(){
         }
     }
 }
-function countPoints(colour){
-    console.log(colour);
+function countPoints(theColour){
+    let result = Array();
+    result = boxesList.filter(box => box.colour == theColour);
+    character.points += result.length;
 }
 function createList(){
+    boxesList = [];
     let y = 200;
     for (let i = 0; i < 5; i++){
         let box = new Collectable(727,y,50)
