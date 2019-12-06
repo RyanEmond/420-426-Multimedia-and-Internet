@@ -100,11 +100,11 @@ function countPoints(colour){
     console.log(colour);
 }
 function createList(){
-    let y = 18;
-    for (let i = 0; i < 10; i++){
+    let y = 200;
+    for (let i = 0; i < 5; i++){
         let box = new Collectable(727,y,50)
         boxesList.push(box);
-        y+=68;
+        y+=60;
     }
 }
 function drawList(){
