@@ -8,6 +8,8 @@ let boxesArr = new Array();
 let boxesList = new Array();
 let boxesNeeded = new Array();
 let inProgress = false;
+let animating = true;
+let timeLeft = 180; //30 seconds
 window.addEventListener("keypress", keyPress);
 welcome();
 
@@ -25,10 +27,13 @@ function welcome(){
     context.fillText("playing board will clear. ", 400, 320);
     context.fillText("Keep in mind a new collectable block appears", 400, 360);
     context.fillText("every 2 seconds!", 400, 400)
-    context.fillText("Character colour selection", 400, 460)
+    context.fillText("Character colour selection:", 400, 460)
     context.textAlign = "left";
+    context.fillStyle = "red";
     context.fillText("1 - Red", 350, 500)
+    context.fillStyle = "orange";
     context.fillText("2 - Orange", 350, 540)
+    context.fillStyle = "black";
     context.fillText("3 - Black", 350, 580)
     context.textAlign = "center";
     context.fillText("Once you select a colour, press ENTER to begin!", 400, 620)
@@ -42,22 +47,44 @@ function playGame(){
     animate();
 }
 function animate(){
-    requestAnimationFrame(animate);
-    context.clearRect(0,0,canvas.width - 100,canvas.height);
-    drawBorder();
-    character.displayStatus();
-    character.draw();
-    character.updateBounds();
-    movement();
-    if(count % 120 == 0){
-        let box = createBox();
-        boxesArr.push(box);
+    if(animating){
+        console.log("calisse");
+        requestAnimationFrame(animate);
+        timeLeft--;
+        if(timeLeft <= 0){
+            animating = false;
+        }
+        context.clearRect(0,0,canvas.width - 100,canvas.height);
+        drawBorder();
+        character.displayStatus();
+        character.draw();
+        character.updateBounds();
+        movement();
+        if(count % 120 == 0){
+            let box = createBox();
+            boxesArr.push(box);
+        }
+        count++;
+        drawBoxes();
+        checkOverlap();
+        drawList();
     }
-    count++;
-    drawBoxes();
-    checkOverlap();
-    
-    drawList();
+    else{
+        gameOver();
+    }
+}
+function gameOver(){
+    animating = false;
+    canvas.focus();
+    context.clearRect(0,0,canvas.width,canvas.height);
+    context.font = "30px Arial";
+    context.textAlign = "center";
+    context.fillText("You scored "+character.points+" points!", 400, 280);
+    context.fillText("Want to play again? Select a colour and hit ENTER!", 400, 320);
+    context.textAlign = "left";
+    context.fillText("1 - Red", 350, 500)
+    context.fillText("2 - Orange", 350, 540)
+    context.fillText("3 - Black", 350, 580)
 }
 function keyDown(e){
     if(e.keyCode == '37'){          //left
