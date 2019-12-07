@@ -8,8 +8,11 @@ let boxesArr = new Array();
 let boxesList = new Array();
 let boxesNeeded = new Array();
 let inProgress = false;
-let animating = true;
-let timeLeft = 180; //30 seconds
+let animating;
+let timeLeft; //30 seconds = 1800
+let collectSound = new sound("242857__plasterbrain__coin-get.ogg", 0.3)
+let welcomeSound = new sound("challenegeison.mp3", 0.9)
+let deadSound = new sound("Zed's dead baby, Zed's dead (mp3cut.net).mp3", 1)
 window.addEventListener("keypress", keyPress);
 welcome();
 
@@ -37,21 +40,26 @@ function welcome(){
     context.fillText("3 - Black", 350, 580)
     context.textAlign = "center";
     context.fillText("Once you select a colour, press ENTER to begin!", 400, 620)
+    
 }
 function playGame(){
+    welcomeSound.play();
     canvas.focus();
     context.clearRect(0,0,canvas.width,canvas.height);
     window.addEventListener("keydown", keyDown);
     window.addEventListener("keyup", keyUp);
+    inProgress = true;
+    animating = true;
+    timeLeft = 1800;     //30 seconds = 1800
     createList();
     animate();
 }
 function animate(){
     if(animating){
-        console.log("calisse");
         requestAnimationFrame(animate);
         timeLeft--;
         if(timeLeft <= 0){
+            deadSound.play();
             animating = false;
         }
         context.clearRect(0,0,canvas.width - 100,canvas.height);
@@ -74,7 +82,8 @@ function animate(){
     }
 }
 function gameOver(){
-    animating = false;
+    inProgress = false;
+    window.addEventListener("keypress", keyPress);
     canvas.focus();
     context.clearRect(0,0,canvas.width,canvas.height);
     context.font = "30px Arial";
@@ -118,7 +127,6 @@ function keyPress(e){
     if(!inProgress){
         if(e.keyCode == '13'){      //enter
             playGame();
-            inProgress = true;
         }
         else if(e.keyCode == '49'){ //1
             character.colour = "red";
@@ -159,6 +167,7 @@ function checkOverlap(){
     for(let i in boxesArr){
         if(boxesArr[i].boundaries['left'] >= character.boundaries['left'] && boxesArr[i].boundaries['right'] <= character.boundaries['right'] && boxesArr[i].boundaries['top'] >= character.boundaries['top'] && boxesArr[i].boundaries['bottom'] <= character.boundaries['bottom']){
             countPoints(boxesArr[i].colour);
+            collectSound.play();
             boxesArr = [];
             createList();
             break;  
