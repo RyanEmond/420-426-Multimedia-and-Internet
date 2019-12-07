@@ -9,7 +9,7 @@ let boxesList = new Array();
 let boxesNeeded = new Array();
 let inProgress = false;
 let animating;
-let timeLeft; //30 seconds = 1800
+let timeLeft;
 let collectSound = new sound("242857__plasterbrain__coin-get.ogg", 0.3)
 let welcomeSound = new sound("challenegeison.mp3", 0.9)
 let deadSound = new sound("Zed's dead baby, Zed's dead (mp3cut.net).mp3", 1)
@@ -40,6 +40,7 @@ function welcome(){
     context.fillText("3 - Black", 350, 580)
     context.textAlign = "center";
     context.fillText("Once you select a colour, press ENTER to begin!", 400, 620)
+    drawDemoCharacter("black");
     
 }
 function playGame(){
@@ -62,7 +63,9 @@ function animate(){
             deadSound.play();
             animating = false;
         }
+        
         context.clearRect(0,0,canvas.width - 100,canvas.height);
+        displayTime();
         drawBorder();
         character.displayStatus();
         character.draw();
@@ -130,15 +133,25 @@ function keyPress(e){
         }
         else if(e.keyCode == '49'){ //1
             character.colour = "red";
+            drawDemoCharacter("red");
         }
         else if(e.keyCode == '50'){ //2
             character.colour = "orange";
+            drawDemoCharacter("orange");
         }
         else if(e.keyCode == '51'){ //3
             character.colour = "black";
+            drawDemoCharacter("black");
         }
         
     }
+}
+function drawDemoCharacter(theColour){
+    context.save();
+    context.translate(600, 500);
+    context.fillStyle = theColour;
+    context.fillRect(0, 0, 50, 50);
+    context.restore();
 }
 function movement(){
     if(character.left){
@@ -198,5 +211,12 @@ function drawBorder(){
     context.translate(700, 0);
     context.fillStyle = "black";
     context.fillRect(0, 0, 4, canvas.height);
+    context.restore();
+}
+function displayTime(){
+    context.save();
+    context.font = "30px Arial";
+    context.textAlign = "left";
+    context.fillText(`Time Left: ${(timeLeft/60).toFixed(0)}`, 10, 80);
     context.restore();
 }
