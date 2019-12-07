@@ -54,6 +54,7 @@ class Character extends aBox{
     displayStatus(){
         context.save();
         context.font = "30px Arial";
+        context.textAlign = "left";
         context.fillText(`Points: ${this.points.toFixed(0)}`, 10, 40);
         context.restore();
     }
