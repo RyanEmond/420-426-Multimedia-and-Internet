@@ -27,6 +27,14 @@ class Character extends aBox{
         this.colour = "Black";
         this.points = 0;
     }
+    resetPos(){
+        this.x = (canvas.width - 100) / 2 - characterSize / 2  ;
+        this.y = canvas.height / 2 - characterSize / 2 ;
+        this.left = false;
+        this.right = false;
+        this.up = false;
+        this.down = false;
+    }
     goLeft(){
         this.x -= this.speed;
         if(this.x < 0){

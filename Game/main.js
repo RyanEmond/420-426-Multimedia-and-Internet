@@ -2,7 +2,7 @@ let canvas = document.querySelector('canvas');
 let context = canvas.getContext('2d');
 let characterSize = 40;
 let boxSize = 20;
-let character = new Character(canvas.width / 2 - 20, canvas.height / 2 - 20, characterSize);
+let character = new Character((canvas.width - 100) / 2 - characterSize / 2 , canvas.height / 2 - characterSize / 2, characterSize);
 let count = 0;
 let boxesArr = new Array();
 let boxesList = new Array();
@@ -49,6 +49,7 @@ function welcome(){
 }
 function playGame(){
     welcomeSound.play();
+    
     canvas.focus();
     context.clearRect(0,0,canvas.width,canvas.height);
     character.points = 0;
@@ -91,10 +92,12 @@ function animate(){
 }
 function gameOver(){
     inProgress = false;
+    character.resetPos();
     checkHighscore();
     window.addEventListener("keypress", keyPress);
     canvas.focus();
     context.clearRect(0,0,canvas.width,canvas.height);
+    displayHighScores()
     context.font = "30px Arial";
     context.textAlign = "center";
     context.fillText("You scored "+character.points+" points!", 400, 360);
@@ -242,4 +245,37 @@ function updateScores(index){
     let name = prompt("New highscore! Please enter your name!")
     highScores.splice(index, 0, {"Name": name, "Score": character.points});
     highScores.pop();
+}
+function displayHighScores(){
+    context.font = "30px Arial";
+    context.textAlign = "center";
+    context.fillText("Highscores", 400, 40);
+    context.strokeRect(200,50,400,150);
+    context.beginPath();
+    context.moveTo(200, 100);
+    context.lineTo(600, 100);
+    context.stroke();
+    context.closePath();
+    context.beginPath();
+    context.moveTo(200, 150);
+    context.lineTo(600, 150);
+    context.stroke();
+    context.closePath();
+    context.beginPath();
+    context.moveTo(400, 50);
+    context.lineTo(400, 200);
+    context.stroke();
+    context.closePath();
+    context.textAlign = "left";
+    let y = 90;
+    for(let player of highScores){
+        context.fillText(player["Name"], 210, y);
+        y+=50;
+    }
+    y = 90;
+    for(let player of highScores){
+        context.fillText(player["Score"], 410, y);
+        y+=50;
+    }
+    
 }
