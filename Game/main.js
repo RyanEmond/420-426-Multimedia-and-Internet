@@ -14,6 +14,9 @@ let collectSound = new sound("Sounds/collect.ogg", 0.3)
 let welcomeSound = new sound("Sounds/challenegeison.mp3", 0.9)
 let deadSound = new sound("Sounds/endofgame.mp3", 1)
 let highScores = new Array(3);
+highScores[0] = {"Name": "Jim", "Score": 5};
+highScores[1] = {"Name": "John", "Score": 2};
+highScores[2] = {"Name": "Jan", "Score": 1};
 window.addEventListener("keypress", keyPress);
 welcome();
 
@@ -48,6 +51,8 @@ function playGame(){
     welcomeSound.play();
     canvas.focus();
     context.clearRect(0,0,canvas.width,canvas.height);
+    character.points = 0;
+    boxesArr = [];
     window.addEventListener("keydown", keyDown);
     window.addEventListener("keyup", keyUp);
     inProgress = true;
@@ -64,7 +69,6 @@ function animate(){
             deadSound.play();
             animating = false;
         }
-        
         context.clearRect(0,0,canvas.width - 100,canvas.height);
         displayTime();
         drawBorder();
@@ -87,6 +91,7 @@ function animate(){
 }
 function gameOver(){
     inProgress = false;
+    checkHighscore();
     window.addEventListener("keypress", keyPress);
     canvas.focus();
     context.clearRect(0,0,canvas.width,canvas.height);
@@ -102,6 +107,7 @@ function gameOver(){
     context.fillStyle = "black";
     context.fillText("3 - Black", 350, 580)
     drawDemoCharacter("black");
+    
 }
 function keyDown(e){
     if(e.keyCode == '37'){          //left
@@ -148,7 +154,6 @@ function keyPress(e){
             character.colour = "black";
             drawDemoCharacter("black");
         }
-        
     }
 }
 function drawDemoCharacter(theColour){
@@ -224,4 +229,17 @@ function displayTime(){
     context.textAlign = "left";
     context.fillText(`Time Left: ${(timeLeft/60).toFixed(0)}`, 10, 80);
     context.restore();
+}
+function checkHighscore(){
+    for(let i in highScores){
+        if(character.points >= highScores[i]["Score"]){
+            updateScores(i);
+            break;
+        }
+    }
+}
+function updateScores(index){
+    let name = prompt("New highscore! Please enter your name!")
+    highScores.splice(index, 0, {"Name": name, "Score": character.points});
+    highScores.pop();
 }
