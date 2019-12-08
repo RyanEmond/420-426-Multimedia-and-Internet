@@ -10,9 +10,10 @@ let boxesNeeded = new Array();
 let inProgress = false;
 let animating;
 let timeLeft;
-let collectSound = new sound("242857__plasterbrain__coin-get.ogg", 0.3)
-let welcomeSound = new sound("challenegeison.mp3", 0.9)
-let deadSound = new sound("Zed's dead baby, Zed's dead (mp3cut.net).mp3", 1)
+let collectSound = new sound("Sounds/collect.ogg", 0.3)
+let welcomeSound = new sound("Sounds/challenegeison.mp3", 0.9)
+let deadSound = new sound("Sounds/endofgame.mp3", 1)
+let highScores = new Array(3);
 window.addEventListener("keypress", keyPress);
 welcome();
 
@@ -91,12 +92,16 @@ function gameOver(){
     context.clearRect(0,0,canvas.width,canvas.height);
     context.font = "30px Arial";
     context.textAlign = "center";
-    context.fillText("You scored "+character.points+" points!", 400, 280);
-    context.fillText("Want to play again? Select a colour and hit ENTER!", 400, 320);
+    context.fillText("You scored "+character.points+" points!", 400, 360);
+    context.fillText("Want to play again? Select a colour and hit ENTER!", 400, 400);
     context.textAlign = "left";
+    context.fillStyle = "red";
     context.fillText("1 - Red", 350, 500)
+    context.fillStyle = "orange";
     context.fillText("2 - Orange", 350, 540)
+    context.fillStyle = "black";
     context.fillText("3 - Black", 350, 580)
+    drawDemoCharacter("black");
 }
 function keyDown(e){
     if(e.keyCode == '37'){          //left
