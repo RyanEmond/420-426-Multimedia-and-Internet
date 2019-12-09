@@ -14,9 +14,9 @@ let collectSound = new sound("Sounds/collect.ogg", 0.3)
 let welcomeSound = new sound("Sounds/challenegeison.mp3", 0.9)
 let deadSound = new sound("Sounds/endofgame.mp3", 1)
 let highScores = new Array(3);
-highScores[0] = {"Name": "Jim", "Score": 5};
-highScores[1] = {"Name": "John", "Score": 2};
-highScores[2] = {"Name": "Jan", "Score": 1};
+highScores[0] = {"Name": "Kerissa", "Score": 17};
+highScores[1] = {"Name": "Ryan", "Score": 12};
+highScores[2] = {"Name": "Nick", "Score": 2};
 window.addEventListener("keypress", keyPress);
 welcome();
 
